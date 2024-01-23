@@ -52,3 +52,38 @@ def parse_grid(grid_text):
         grid_as_ints.append(row_values)
     return grid_as_ints
 
+
+def factorial_recursive(n):
+    if n == 0:
+        return 1
+    return n * factorial_recursive(n - 1)
+
+
+def factorial_recursive_memoization(n, memo={}):
+    if n == 0:
+        return 1
+    if n in memo:
+        return memo[n]
+    memo[n] = n * factorial_recursive_memoization(n - 1)
+    return memo[n]
+
+
+def factorial_iterative(num):
+    result = 1
+    for n in range(1, num + 1):
+        result *= n
+    return result
+
+
+def number_addition_sum_recursive(num):
+    if not num:
+        return 0
+    return num % 10 + number_addition_sum_recursive(num // 10)
+
+
+def number_addition_sum_iterative(num):
+    result = 0
+    while num:
+        result += num % 10
+        num //= 10
+    return result
