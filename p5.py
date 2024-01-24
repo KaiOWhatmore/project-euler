@@ -1,19 +1,12 @@
 import utils
 
 
-def is_divisible_up_until(num, ceil):
-    for n in range(1, ceil + 1):
-        if num % n != 0:
-            return False
-    return True
+def lcm_of_range(start, end):
+    # current_lcm = start
+    current_lcm = start
+    for i in range(start + 1, end + 1):
+        current_lcm = utils.lcm(current_lcm, i)
+    return current_lcm
 
-ceil = 10
-i = ceil * ceil
-while True:
-    print(i)
-    if is_divisible_up_until(i, ceil):
-        print(f"smallest number divisible by 1-{ceil} is {i}")
-        break
-    i += 1
 
-# print(is_divisible_up_until(2520, 10))
+# print(lcm_of_range(1, 20)) 232792560

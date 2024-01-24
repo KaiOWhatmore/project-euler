@@ -17,5 +17,4 @@ def names_scores(sorted_names):
         result += (i + 1) * sum_of_letter_orders(name)
     return result
 
-
 # print(names_scores(sorted_names)) 871198282

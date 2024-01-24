@@ -87,3 +87,72 @@ def number_addition_sum_iterative(num):
         result += num % 10
         num //= 10
     return result
+
+
+def return_proper_divisors_sum(num):
+    proper_divisors = set()
+    proper_divisors.add(1)
+    for n in range(2, math.isqrt(num) + 1):
+        if num % n == 0:
+            proper_divisors.add(n)
+            proper_divisors.add(num // n)
+    return sum(proper_divisors)
+
+
+def return_divisors_amount_list(num):
+    proper_divisors = set()
+    proper_divisors.add(1)
+    proper_divisors.add(num)
+    for n in range(2, math.isqrt(num) + 1):
+        if num % n == 0:
+            proper_divisors.add(n)
+            proper_divisors.add(num // n)
+    return len(proper_divisors), proper_divisors
+
+
+def return_divisors_amount_int(num):
+    # total = 1 if num == 1 else 2
+    root = math.isqrt(num)
+    divisors = 0
+    for n in range(1,  root + 1):
+        if num % n == 0:
+            divisors += 2
+    if root * root == num:
+        divisors -= 1
+    return divisors
+
+
+def gcd_recursive(a, b):
+    """ a > b """
+    if b > a:
+        tmp = a
+        a = b
+        b = tmp
+    if a % b == 0:
+        return b
+    return gcd_recursive(a % b, b)
+
+
+def gcd_recur_clean(a, b):
+    r = a % b
+    if r == 0:
+        return b
+    return gcd_recur_clean(b, r)
+
+
+def gcd_iterative(a, b):
+    """ a > b """
+    if b > a:
+        tmp = b
+        b = a
+        a = tmp
+    while True:
+        r = a % b
+        a = b
+        b = r
+        if a % b == 0:
+            return b
+
+
+def lcm(a, b):
+    return (a * b) // gcd_recursive(a, b)
