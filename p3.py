@@ -6,7 +6,8 @@ import utils
 Largest Prime Factor
 """
 
-N = 600851475143
+
+# N = 600851475143
 
 
 def largest_prime_factor(N):
@@ -15,5 +16,4 @@ def largest_prime_factor(N):
         if N % n == 0 and utils.is_prime(n):
             return n
 
-
-print(largest_prime_factor(N)) #6857
+# print(largest_prime_factor(N)) #6857

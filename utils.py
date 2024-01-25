@@ -114,7 +114,7 @@ def return_divisors_amount_int(num):
     # total = 1 if num == 1 else 2
     root = math.isqrt(num)
     divisors = 0
-    for n in range(1,  root + 1):
+    for n in range(1, root + 1):
         if num % n == 0:
             divisors += 2
     if root * root == num:
@@ -156,3 +156,29 @@ def gcd_iterative(a, b):
 
 def lcm(a, b):
     return (a * b) // gcd_recursive(a, b)
+
+
+def fib_recur(n, memo):
+    if n <= 2:
+        return 1
+    if n in memo:
+        return memo[n]
+    memo[n] = fib_recur(n - 1, memo) + fib_recur(n - 2, memo)
+    return memo[n]
+
+
+def fib_iter(n):
+    a, b = 1, 1
+    for i in range(2, n):
+        total = a + b
+        a = b
+        b = total
+    return b
+
+
+def integer_length(n):
+    count = 0
+    while n > 0:
+        n //= 10
+        count += 1
+    return count
