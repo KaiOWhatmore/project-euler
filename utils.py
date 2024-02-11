@@ -182,3 +182,19 @@ def integer_length(n):
         n //= 10
         count += 1
     return count
+
+
+def is_perfect_square(n):
+    i = 2
+    while i * i <= n:
+        if n == i * i:
+            return True
+        i += 1
+        # print(i)
+    return False
+
+
+def index_of_letter(c):
+    if c.isupper():
+        return ord(c) - ord('A') + 1
+    return ord(c) - ord('a') + 1

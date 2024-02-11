@@ -1,24 +1,45 @@
-a = 1/7
-b = f"{a:.20f}"
-b = b[2:]
+import utils
 
-print(b)
-print(b[:6])
-print(b[6:12])
-print(b[12:18])
 
-def longest_repeating_substring(s):
-    longest_substr = ""
-    n = len(s)
+def find_unit_fraction(divisor):
+    n = 10
+    res = ''
+    remainders = {}
+    while n:
+        q = n // divisor
+        res += str(q)
+        r = n % divisor * 10
+        n = r
+        if r in remainders:
+            start_pos = remainders[r]
+            return res[start_pos:]
+        else:
+            remainders[r] = len(res)
+    return res
 
-    for i in range(n):
-        for j in range(i + 1, n + 1):
-            substr = s[i:j]
-            if s.count(substr) > 1 and len(substr) > len(longest_substr):
-                longest_substr = substr
 
-    return longest_substr
+def reciprocal_cycles(d):
+    result = 0
+    max_int = 0
+    for i in range(1, d):
+        cycle_length = len(find_unit_fraction(i))
+        if cycle_length > result:
+            result = cycle_length
+            max_int = i
+    return f"number for longest recurring cycle: {max_int}\nrecurring cycle length: {result}"
 
-# Test the function
-input_string = "abcabcabcabc"
-print("Longest repeating substring:", longest_repeating_substring(input_string))
+
+def rep_cyc(primes):
+    res, max_i = 0, 0
+    for prime in primes:
+        cyc_len = len(find_unit_fraction(prime))
+        if cyc_len > res:
+            res = cyc_len
+            max_i = prime
+    return f"number for longest recurring cycle: {max_i}\nrecurring cycle length: {res}"
+
+
+print(reciprocal_cycles(1000))
+
+primes = utils.sieve_of_eratosthenes(1000)
+print(rep_cyc(primes))

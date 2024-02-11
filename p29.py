@@ -3,7 +3,7 @@ def distinct_powers(min_limit, max_limit):
     for a in range(min_limit, max_limit + 1):
         for b in range(min_limit, max_limit + 1):
             distinct_powers.add(a ** b)
-    return len(distinct_powers)`
+    return len(distinct_powers)
 
 
 print(distinct_powers(2, 100))
