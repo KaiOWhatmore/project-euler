@@ -10,7 +10,7 @@ import utils
 """
 b must be a prime number as f(0) = prime 
 """
-b_canditates = utils.sieve_of_eratosthenes(1000)
+b_canditates = utils.sieve_of_eratosthenes_l(1000)
 
 
 def quadratic_primes(limit_a):

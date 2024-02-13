@@ -4,7 +4,7 @@ limit = 1000_000
 
 
 def consecutive_prime_sum(limit):
-    primes = utils.sieve_of_eratosthenes(limit)
+    primes = utils.sieve_of_eratosthenes_l(limit)
     primes_set = set(primes)
     max_prime = 0
     result = 0

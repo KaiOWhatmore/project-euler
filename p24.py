@@ -20,7 +20,7 @@ import utils
 
 def lexicographic_perms_i(string, index):
     string = list(string)
-    ciel = utils.factorial_iterative(len(string))
+    ciel = utils.factorial_i(len(string))
     for p in range(ciel):
 
         if p == index - 1:

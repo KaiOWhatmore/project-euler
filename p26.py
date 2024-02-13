@@ -41,5 +41,5 @@ def rep_cyc(primes):
 
 print(reciprocal_cycles(1000))
 
-primes = utils.sieve_of_eratosthenes(1000)
+primes = utils.sieve_of_eratosthenes_l(1000)
 print(rep_cyc(primes))

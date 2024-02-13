@@ -14,4 +14,4 @@ def find_prime_limit(limit):
         i += 1
 
 
-print(utils.sieve_of_eratosthenes(150000)[LIMIT - 1] == find_prime_limit(LIMIT))
+print(utils.sieve_of_eratosthenes_l(150000)[LIMIT - 1] == find_prime_limit(LIMIT))

@@ -23,8 +23,8 @@ def lattice_paths(grid_width):
     so we're going to use the binomial
     coefficient
     """
-    a = utils.factorial_iterative(grid_width * 2)
-    b = utils.factorial_iterative(grid_width)
+    a = utils.factorial_i(grid_width * 2)
+    b = utils.factorial_i(grid_width)
 
     return a // (b * b)
 

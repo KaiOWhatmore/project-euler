@@ -1,4 +1,5 @@
 import math
+import time
 
 
 def is_prime(n):
@@ -14,12 +15,23 @@ def is_prime(n):
     return True
 
 
-def sieve_of_eratosthenes(limit):
+def sieve_of_eratosthenes_l(limit):
     nums = [True] * limit
     primes = []
     for i in range(2, limit):
         if nums[i]:
             primes.append(i)
+            for j in range(i * i, limit, i):
+                nums[j] = False
+    return primes
+
+
+def sieve_of_eratosthenes_s(limit):
+    nums = [True] * limit
+    primes = set()
+    for i in range(2, limit):
+        if nums[i]:
+            primes.add(i)
             for j in range(i * i, limit, i):
                 nums[j] = False
     return primes
@@ -53,35 +65,38 @@ def parse_grid(grid_text):
     return grid_as_ints
 
 
-def factorial_recursive(n):
+def factorial_r(n):
+    """ recursively calculates factorial """
     if n == 0:
         return 1
-    return n * factorial_recursive(n - 1)
+    return n * factorial_r(n - 1)
 
 
-def factorial_recursive_memoization(n, memo={}):
+def factorial_r_m(n, memo={}):
+    """ recursively calculates factorial with memo """
     if n == 0:
         return 1
     if n in memo:
         return memo[n]
-    memo[n] = n * factorial_recursive_memoization(n - 1)
+    memo[n] = n * factorial_r_m(n - 1)
     return memo[n]
 
 
-def factorial_iterative(num):
+def factorial_i(num):
+    """ iteratively calculates factorial  """
     result = 1
     for n in range(1, num + 1):
         result *= n
     return result
 
 
-def number_addition_sum_recursive(num):
+def number_addition_sum_r(num):
     if not num:
         return 0
-    return num % 10 + number_addition_sum_recursive(num // 10)
+    return num % 10 + number_addition_sum_r(num // 10)
 
 
-def number_addition_sum_iterative(num):
+def number_addition_sum_i(num):
     result = 0
     while num:
         result += num % 10
@@ -122,7 +137,7 @@ def return_divisors_amount_int(num):
     return divisors
 
 
-def gcd_recursive(a, b):
+def gcd_r(a, b):
     """ a > b """
     if b > a:
         tmp = a
@@ -130,17 +145,17 @@ def gcd_recursive(a, b):
         b = tmp
     if a % b == 0:
         return b
-    return gcd_recursive(a % b, b)
+    return gcd_r(a % b, b)
 
 
-def gcd_recur_clean(a, b):
+def gcd_r_clean(a, b):
     r = a % b
     if r == 0:
         return b
-    return gcd_recur_clean(b, r)
+    return gcd_r_clean(b, r)
 
 
-def gcd_iterative(a, b):
+def gcd_i(a, b):
     """ a > b """
     if b > a:
         tmp = b
@@ -155,19 +170,19 @@ def gcd_iterative(a, b):
 
 
 def lcm(a, b):
-    return (a * b) // gcd_recursive(a, b)
+    return (a * b) // gcd_r(a, b)
 
 
-def fib_recur(n, memo):
+def fib_r(n, memo):
     if n <= 2:
         return 1
     if n in memo:
         return memo[n]
-    memo[n] = fib_recur(n - 1, memo) + fib_recur(n - 2, memo)
+    memo[n] = fib_r(n - 1, memo) + fib_r(n - 2, memo)
     return memo[n]
 
 
-def fib_iter(n):
+def fib_i(n):
     a, b = 1, 1
     for i in range(2, n):
         total = a + b
@@ -198,3 +213,73 @@ def index_of_letter(c):
     if c.isupper():
         return ord(c) - ord('A') + 1
     return ord(c) - ord('a') + 1
+
+
+def runtime(func, *args, **kwargs):
+    t1 = time.time()
+    func(*args, **kwargs)
+    return time.time() - t1
+
+
+def permutations_s_c(s):
+    """ returns a list of permutations
+        this uses pure strings during computation
+        and list comprehension
+        the syntax is made to be as flat as possible at
+        perhaps the cost of readability """
+    res = []
+    if len(s) == 1:
+        return [s]
+    for i in range(len(s)):
+        res.extend([perm + s[i] for perm in permutations_s_c(s[:i] + s[i + 1:])])
+    return res
+
+
+def permutations_s(s):
+    """ returns a list of permutations.
+        uses strings during computation.
+        nested for loop is used for the sake
+        of readability """
+    res = []
+    if len(s) == 1:
+        return [s]
+    for i in range(len(s)):
+        s_sub_list = s[:i] + s[i + 1:]
+        for perm in permutations_s(s_sub_list):
+            res.append(perm + s[i])
+    return res
+
+
+def permutations_s_l(s):
+    """ returns a list of permutations
+        uses a mixture of lists and strings
+        for computation """
+    s_list = list(s)
+    res = []
+    if len(s_list) == 1:
+        return s
+    for i in range(len(s_list)):
+        s_sub_list = s_list[::]
+        s_sub_list.pop(i)
+        perms = permutations_s_l(s_sub_list)
+        for perm in perms:
+            perm += s_list[i]
+            res.append(perm)
+    return res
+
+
+def permutations_l(s):
+    """ returns a list of permutations
+        uses a list for computation """
+    s_list = list(s)
+    res = []
+    if len(s_list) == 1:
+        return [s_list]
+    for i in range(len(s_list)):
+        s_sub_list = s_list[::]
+        s_sub_list.pop(i)
+        perms = permutations_l(s_sub_list)
+        for perm in perms:
+            perm.append(s_list[i])
+            res.append(perm)
+    return res
