@@ -11,6 +11,7 @@ def is_pandigital(start, end, num):
         return True
     return False
 
+
 def is_pandigital_gpt(start, end, num):
     return set(num) == set("123456789") and len(num) == end - start + 1
 

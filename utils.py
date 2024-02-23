@@ -37,6 +37,40 @@ def sieve_of_eratosthenes_s(limit):
     return primes
 
 
+def sieve_of_eratosthenes_opt_s(limit):
+    """ simple logic hack to reduce runtime by half """
+    if limit < 2:
+        return []
+    is_prime = [False, False] + [True] * (limit - 2)
+    primes = {2}
+
+    # skip every even number for i
+    for i in range(3, limit, 2):
+        if is_prime[i]:
+            primes.add(i)
+            # skip every even number for j (i.e. step skips: odd * even == even)
+            for j in range(i * i, limit, i * 2):
+                is_prime[j] = False
+    return primes
+
+
+def sieve_of_eratosthenes_opt_l(limit):
+    """ simple logic hack to reduce runtime by half """
+    if limit < 2:
+        return []
+    is_prime = [False, False] + [True] * (limit - 2)
+    primes = [2]
+
+    # skip every even number for i
+    for i in range(3, limit, 2):
+        if is_prime[i]:
+            primes.append(i)
+            # skip every even number for j (i.e. step skips: odd * even == even)
+            for j in range(i * i, limit, i * 2):
+                is_prime[j] = False
+    return primes
+
+
 def is_number_palindrome(number):
     if number < 0:
         return False  # Negative numbers are not palindromes
@@ -123,6 +157,17 @@ def return_divisors_amount_list(num):
             proper_divisors.add(n)
             proper_divisors.add(num // n)
     return len(proper_divisors), proper_divisors
+
+
+def divisors_set(num):
+    proper_divisors = set()
+    proper_divisors.add(1)
+    proper_divisors.add(num)
+    for n in range(2, math.isqrt(num) + 1):
+        if num % n == 0:
+            proper_divisors.add(n)
+            proper_divisors.add(num // n)
+    return proper_divisors
 
 
 def return_divisors_amount_int(num):
@@ -283,3 +328,33 @@ def permutations_l(s):
             perm.append(s_list[i])
             res.append(perm)
     return res
+
+
+def expand_sieve(existing_primes, max_val, new_max_val):
+    # Initialize sieve with True values for new range
+    sieve = [True] * (new_max_val + 1)
+    for p in existing_primes:
+        # Start sieving from the square of each prime (optimization)
+        start = max(p * p, (max_val // p + 1) * p)
+        for i in range(start, new_max_val + 1, p):
+            sieve[i] = False
+
+    # Find new primes in the expanded range
+    for n in range(max_val + 1, new_max_val + 1):
+        if sieve[n]:
+            existing_primes.add(n)
+            # Sieve multiples of the newly found prime
+            for i in range(n * n, new_max_val + 1, n):
+                sieve[i] = False
+
+        return existing_primes
+
+    def sieve_of_odd_composites(limit):
+        odd_composites = [False, False] + [i % 2 != 0 for i in range(2, 9)] + [False] * (limit - 9)
+        result = []
+        for i in range(3, limit, 2):
+            if odd_composites[i]:
+                result.append(i)
+                for n in range(i * i, limit, 2 * i):
+                    odd_composites[n] = True
+        return result[3:]
