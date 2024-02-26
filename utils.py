@@ -263,7 +263,7 @@ def index_of_letter(c):
 def runtime(func, *args, **kwargs):
     t1 = time.time()
     func(*args, **kwargs)
-    return time.time() - t1
+    print(f"{func} takes {time.time() - t1} to execute")
 
 
 def permutations_s_c(s):
