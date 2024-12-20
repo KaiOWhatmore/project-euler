@@ -36,5 +36,5 @@ def prime_permutations():
                         return f"Sequence is: {prime}{next_prime}{next_prime + diff}"
 
 
-print(prime_permutations()) # 296962999629
+print(prime_permutations())  # 296962999629
 utils.runtime(prime_permutations)

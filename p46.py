@@ -4,7 +4,7 @@ odd_comp - prime // 2 = perf_square
 if not is_perf_square(odd_comp - prime // 2) => return
 """
 import math
-
+import cProfile
 import utils
 
 
@@ -34,4 +34,5 @@ def goldbachs_conjecture():
         n += 1
 
 
-print(goldbachs_conjecture())
+# print(goldbachs_conjecture())
+cProfile.run('goldbachs_conjecture()', 'p46_output_file')

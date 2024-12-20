@@ -116,6 +116,3 @@ def find_max_product_diagonal_left(grids, span):
 
 
 nums = [1, 2, 3, 4, 5, 6]
-
-# for i in range(len(nums) - SPAN + 1):
-#     print(math.prod(nums[i:i + SPAN]))

@@ -1,0 +1,67 @@
+event: ns : Nanoseconds
+events: ns
+summary: 13654125
+fl=/Users/kai-m1/dev/project-euler/p46.py
+fn=is_conjecture
+11 3154899
+cfl=/Users/kai-m1/dev/project-euler/utils.py
+cfn=is_prime
+calls=8616 5
+11 6649214
+cfl=~
+cfn=<built-in method math.isqrt>
+calls=2132 0
+11 146342
+cfl=~
+cfn=<method 'add' of 'set' objects>
+calls=2131 0
+11 95202
+
+fl=/Users/kai-m1/dev/project-euler/p46.py
+fn=goldbachs_conjecture
+23 1272262
+cfl=/Users/kai-m1/dev/project-euler/p46.py
+cfn=is_conjecture
+calls=2132 11
+23 10045657
+cfl=/Users/kai-m1/dev/project-euler/utils.py
+cfn=is_prime
+calls=2885 5
+23 2303540
+
+fl=/Users/kai-m1/dev/project-euler/utils.py
+fn=is_prime
+5 8176292
+cfl=~
+cfn=<built-in method math.isqrt>
+calls=11479 0
+5 776462
+
+fl=<string>
+fn=<module>
+1 625
+cfl=/Users/kai-m1/dev/project-euler/p46.py
+cfn=goldbachs_conjecture
+calls=1 23
+1 13621459
+
+fl=~
+fn=<built-in method builtins.exec>
+0 32041
+cfl=<string>
+cfn=<module>
+calls=1 1
+0 13622084
+
+fl=~
+fn=<built-in method math.isqrt>
+0 922804
+
+fl=~
+fn=<method 'add' of 'set' objects>
+0 95202
+
+fl=~
+fn=<method 'disable' of '_lsprof.Profiler' objects>
+0 167
+
